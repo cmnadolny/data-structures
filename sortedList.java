@@ -1,9 +1,9 @@
 public class sortedList{
-	Node head = null;
+	private Node head = null;
 
 	private class Node{
 		int data;
-		Node next = null;
+		private Node next = null;
 		private Node(int data){
 			this.data = data;
 		}
@@ -33,6 +33,7 @@ public class sortedList{
 	}
 
 	public Boolean detectCycle(){
+		//TODO
 		Node slow = this.head;
 		Node fast = this.head;
 
@@ -77,6 +78,8 @@ public class sortedList{
 	}
 
 	public static sortedList mergeLists(sortedList a, sortedList b){
+		//TODO
+		
 		if(a == null){
 			return b;
 		}
@@ -89,6 +92,7 @@ public class sortedList{
 	}
 
 	public void mergeKLists(sortedList [] lists){
+		//TODO
 
 	}
 
