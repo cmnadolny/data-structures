@@ -1,60 +1,30 @@
 public class Stack{
-	private int [] stack;
-	private int currIndex, baseIndex;
-	private int N = 100;
+	private LinkedList stack;
 
 	public Stack(){
-		stack = new int[N];
-		baseIndex = 0;
-		currIndex = baseIndex;
+		stack = new LinkedList();
 	}
 
 	public void push(int data){
-		if(currIndex == N - 1){
-			resizeStack();
-		}
-
-		stack[currIndex] = data;
-		currIndex++;
+		stack.insertAt(0, data);
 	}
 
 	public int pop(){
-		if(currIndex == baseIndex){
+		if( stack.isEmpty() ){
 			return -1;
 		}
+		int temp = stack.peekAt(0);
+		stack.removeAt(0);
 
-		currIndex--;
-		return stack[currIndex];
+		return temp;
 	}
 
 	public int peek(){
-		if(currIndex == baseIndex){
-			return -1;
-		}
-
-		return stack[currIndex - 1];
+		return stack.peekAt(0);
 	}
 
 	public void printStack(){
-		if(currIndex == baseIndex){
-			System.out.println(-1);
-		}
-		else{
-			for(int i = currIndex - 1; i >= 0; i--){
-				System.out.print(stack[i] + " ");
-			}
-		System.out.println();
-		}
-	}
-
-	private void resizeStack(){
-		N *= 2;
-		int [] newStack = new int[N];
-		for(int i = 0; i < currIndex; i++){
-			newStack[i] = stack[i];
-		}
-
-		this.stack = newStack;
+		stack.printList();
 	}
 
 	public static void main(String [] args){

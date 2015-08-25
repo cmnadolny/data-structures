@@ -1,76 +1,35 @@
 public class Queue{
-	private int [] queue;
-	private int N = 100;
-	private int startIndex, endIndex;
+	private LinkedList queue;
 
 	public Queue(){
-		queue = new int[N];
-		startIndex = 0;
-		endIndex = startIndex;
+		queue = new LinkedList();
 	}
 
 	public void enqueue(int data){
-		if(endIndex == N - 1){
-			if(endIndex - startIndex <= endIndex/startIndex){
-				shiftQueue();
-			}
-			else{
-				resizeQueue();
-			}
-		}
-
-		queue[endIndex] = data;
-		endIndex++;
+		queue.insert(data);
 	}
 
 	public int dequeue(){
-		if(startIndex == endIndex){
+		if( queue.isEmpty() ){
 			return -1;
 		}
 
-		startIndex++;
-		return queue[startIndex - 1];
+		int temp = queue.peekAt(0);
+		queue.removeAt(0);
+		
+		return temp;
 	}
 
 	public int peek(){
-		if(startIndex == endIndex){
+		if( queue.isEmpty() ){
 			return -1;
 		}
 
-		return queue[startIndex];
+		return queue.peekAt(0);
 	}
 
 	public void printQueue(){
-		if(startIndex == endIndex){
-			System.out.println(-1);
-		}
-		else{
-			for(int i = startIndex; i < endIndex; i++){
-				System.out.print(queue[i] + " ");
-			}
-		System.out.println();
-		}
-	}
-
-	private void resizeQueue(){
-		N *= 2;
-		int [] newQueue = new int[N];
-		int i;
-		for(i = 0; i < endIndex - startIndex; i++){
-			newQueue[i] = queue[startIndex + i];
-		}
-		this.queue = newQueue;
-		startIndex = 0;
-		endIndex = i;
-	}
-
-	private void shiftQueue(){
-		int i;
-		for(i = 0; i < endIndex - startIndex; i++){
-			queue[i] = startIndex + i;
-		}
-		startIndex = 0;
-		endIndex = i;
+		queue.printList();
 	}
 
 	public static void main(String [] args){
